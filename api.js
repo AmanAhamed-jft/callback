@@ -19,16 +19,16 @@ function insertData(obj){
         arr.push(obj);
         console.log(obj);
         console.log('Data is inserted...');
-    
+        Load();
     },2000);
-
+   
 }
 
 function deleteEmployee(index){
     console.log('deleting......');
     setTimeout(()=>{
       arr.splice(index,1);
-     
+      Load();
     },2000)
     console.log('delete is done');
     
@@ -42,9 +42,9 @@ function updateEmployee(index,name,desig,salary){
               arr[index]['name']=name;
               arr[index]['desig']=desig;
               arr[index]['salary']=salary;
-             btn.innerHTML='Add';
-             
-             
+             btn.innerHTML='Add'; 
+             Load();
+
     },2000);
     
     console.log('updated sucessfully');

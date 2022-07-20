@@ -8,7 +8,11 @@ let myIndex=0;
 let lastIndexClick = -1;
 function Load(){
     getData(insertDataTable);
-};
+}
+
+(function init(){
+  Load();
+})();
 
 function addData(e){
   let Name=name.value;
@@ -23,11 +27,8 @@ function addData(e){
         insertData(obj);
       else
         updateEmployee(lastIndexClick,Name,Desig,Salary);
-
-     
-
       
-
+      name.value='';   desig.value='';  salary.value='';
 }
 
 function insertDataTable(){
