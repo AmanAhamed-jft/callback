@@ -24,13 +24,7 @@ function insertData(obj){
 function deleteEmployee(index){
     console.log('deleting......');
     setTimeout(()=>{
-      for(let i=0;i<arr.length;i++){
-        if(arr[i].id===index){
-            delete arr[i];
-            break;
-        }
-      } 
-      console.log('delete is done');   
-
-    },2000);
+      arr.splice(index,1);
+    },2000)
+    console.log('delete is done');
 }
