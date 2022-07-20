@@ -5,11 +5,12 @@ let name=document.getElementById('name');
 let desig=document.getElementById('desig');
 let salary=document.getElementById('salary');
 let myIndex=0;
+let lastIndexClick = -1;
 function Load(){
     getData(insertDataTable);
 };
 
-function addData(){
+function addData(e){
   let Name=name.value;
   let Desig=desig.value;
   let Salary=salary.value;
@@ -18,7 +19,15 @@ function addData(){
       desig:Desig,
       salary:Salary,
       }
-      insertData(obj);
+      if(btn.innerText=='Add')
+        insertData(obj);
+      else
+        updateEmployee(lastIndexClick,Name,Desig,Salary);
+
+     
+
+      
+
 }
 
 function insertDataTable(){
@@ -36,15 +45,27 @@ function insertDataTable(){
      </div></td>
       </tr>`
       }); 
-      table.innerHTML = data;
-     
+      table.innerHTML = data;   
 }
 
-function updateData(e){
- 
 
-  console.log('update is called',e);
-  
+function updateData(e){
+  console.log("update data==", e)
+ btn.innerText='Update';
+  name.value=arr[e].name;
+  desig.value=arr[e].desig;
+  salary.value=arr[e].salary;
+
+  let n = arr[e].name
+  let d = arr[e].desig
+  let s = arr[e].salary
+
+  console.log('updateData',e,n,d,s)
+  lastIndexClick = e;
+  // btn.addEventListener('click', ()=>{
+  //   updateEmployee(e,n,d,s);
+  // })
+  // addData(e);
 }
 
 function deleteData(e){
