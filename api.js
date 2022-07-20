@@ -3,49 +3,54 @@ const arr=[
     {id:1,name:'gaurav',desig:'data-scientist',salary:'1000'},
 ];
 
-function getData(callBack){
+function getData(){
     console.log('Data Fetching....');
-    setTimeout(()=>{
-        callBack();
-        console.log('Data Fetched...');
-        
-    },2000)
+    let myPromise=new Promise(function(resolve,reject){
+        setTimeout(()=>{
+              resolve();
+        },1000);
+    }); 
+    console.log('Data is fetched...');
+    return myPromise;
+   
 }
 
 function insertData(obj){
     console.log('Data is inserting....');
-    setTimeout(()=>{
+    let myPromise=new Promise(function(res,rej){
+      setTimeout(()=>{
         obj.id=arr.length;
         arr.push(obj);
-        console.log(obj);
-        console.log('Data is inserted...');
-        Load();
-    },2000);
-   
+        res(); 
+      },1000)
+    })
+    console.log('Data is inserted...');
+    return myPromise;   
 }
 
 function deleteEmployee(index){
     console.log('deleting......');
-    setTimeout(()=>{
-      arr.splice(index,1);
-      Load();
-    },2000)
-    console.log('delete is done');
-    
+    let myPromise=new Promise(function(res,rej){
+       setTimeout(()=>{
+        arr.splice(index,1);
+        res();
+       },1000);
+    });
+    console.log('Data is Deleted....');
+    return myPromise;    
 }
 
 function updateEmployee(index,name,desig,salary){
     console.log('updating.....');
-    console.log('Update Employee',index,name,desig,salary);
-    console.log(arr);
-    setTimeout(()=>{
-              arr[index]['name']=name;
-              arr[index]['desig']=desig;
-              arr[index]['salary']=salary;
-             btn.innerHTML='Add'; 
-             Load();
-
-    },2000);
     
+    let myPromise=new Promise(function(res,rej){
+        setTimeout(()=>{
+            arr[index]['name']=name;
+            arr[index]['desig']=desig;
+            arr[index]['salary']=salary;
+            res();
+           },1000);
+    });
     console.log('updated sucessfully');
+    return myPromise;
 }

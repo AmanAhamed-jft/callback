@@ -7,7 +7,7 @@ let salary=document.getElementById('salary');
 let myIndex=0;
 let lastIndexClick = -1;
 function Load(){
-    getData(insertDataTable);
+    getData().then(insertDataTable).catch(console.log('error in loading'));
 }
 
 (function init(){
@@ -24,9 +24,11 @@ function addData(e){
       salary:Salary,
       }
       if(btn.innerText=='Add')
-        insertData(obj);
-      else
-        updateEmployee(lastIndexClick,Name,Desig,Salary);
+        insertData(obj).then(Load).catch(console.log('error in inserting'));
+      else{
+        updateEmployee(lastIndexClick,Name,Desig,Salary).then(Load).catch(console.log('error in updating..'));
+        btn.innerHTML='Add';
+      };
       
       name.value='';   desig.value='';  salary.value='';
 }
@@ -63,14 +65,8 @@ function updateData(e){
 
   console.log('updateData',e,n,d,s)
   lastIndexClick = e;
-  // btn.addEventListener('click', ()=>{
-  //   updateEmployee(e,n,d,s);
-  // })
-  // addData(e);
 }
 
 function deleteData(e){
-
-  console.log(e);
-  deleteEmployee(e);
+   deleteEmployee(e).then(Load).catch(console.log('error in deleting'));
 }
